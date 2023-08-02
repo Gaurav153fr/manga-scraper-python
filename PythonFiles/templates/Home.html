@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <form  action="Search()" method="post" name="form">
+        <input type="text" id="input" name="jrr">
+    </form>
+        <button type="submit" onclick="Search()">Search..</button>
+    <script>
+        function Search(){
+input  = document.getElementById('input')
+document.form.action = "/search/"+input.value
+document.form.submit()
+console.log("submited")
+        }
+
+    </script>
+</body>
+</html>
