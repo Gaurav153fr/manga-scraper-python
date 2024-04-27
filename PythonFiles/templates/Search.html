@@ -101,10 +101,21 @@
       h6 {
         color: rgb(206, 200, 200);
       }
+      .fixed {
+        background-color: aliceblue;
+
+        position: fixed;
+        top: 20px; /* Adjust this value to position the button as desired */
+        left: 20px; /* Adjust this value to position the button as desired */
+        z-index: 999; /* Ensure the button appears above other content */
+      }
     </style>
   </head>
   <body onmousedown="return false" onselectstart="return false">
-    Search Result for <strong>{{seachTerm}}</strong>
+    <span class="fixed">
+      <a href="javascript:history.back()">Go Back</a>
+      <a href="/">home</a>
+    </span>
     <div class="grid">
       {% for data in src %}
       <form action="/mang/{{data.slug}}" method="get" onclick="submit()">

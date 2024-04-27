@@ -17,8 +17,19 @@
         display: block; /* Ensures each button appears on its own line */
         margin-bottom: 10px; /* Adds spacing between buttons */
       }
+      .fixed {
+        background-color: aliceblue;
+        position: fixed;
+        top: 20px; /* Adjust this value to position the button as desired */
+        left: 20px; /* Adjust this value to position the button as desired */
+        z-index: 999; /* Ensure the button appears above other content */
+      }
     </style>
   </head>
+  <span class="fixed">
+    <a href="javascript:history.back()">Go Back</a>
+    <a href="/">home</a>
+  </span>
   <body style="background-color: black">
     {% for data in epi %}
     <a class="btn" href="{{ data.split('https://www.mangaread.org')[1] }}"
