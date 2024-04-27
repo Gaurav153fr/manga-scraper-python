@@ -1,5 +1,7 @@
+import re
 import requests as rq
 from bs4 import BeautifulSoup as bs
+
 def scrapeImg(URL):
 
     
@@ -12,7 +14,7 @@ def scrapeImg(URL):
     
     for data in filteredData:
         mainImg = data.find('img')
-        v= mainImg['data-src']
+        v= mainImg['src']
         images.append(v)
         
 
@@ -25,7 +27,10 @@ def getepi(epi):
     
 
     soup =bs(data,'html.parser')
-    desc = soup.find("div",class_="summary__content show-more").find_all("p")
+    try:
+     desc = soup.find("div",class_="summary__content show-more").find_all("p")
+    except:
+        desc= soup.find("div",class_="summary__content show-more")
     print(desc)
     filteredData = soup.find_all("li", class_="wp-manga-chapter")
     epi =[]
@@ -45,18 +50,21 @@ def search(searchTerm):
     filteredData = soup.find_all("div", class_="row c-tabs-item__content")
     for data in filteredData:
         v= data.find('h3')
-        img = data.find('img')['data-src']
+        img = data.find('img')['src']
         alttitle = data.find("div",class_="summary-content").text
         score = data.find("span",class_="score font-meta total_votes").text
         lat = data.find("span",class_="font-meta chapter").text
-        print(v.text,img)
+        url=v.find('a')['href']
+        slug=re.search(r'/manga/([^/]+)/?$', url).group(1)
+        print(slug)
 
         if v != None:
          da ={"title" : v.text,
               "img" : img,
               "alt":alttitle,
               "score":score,
-              "latest":lat
+              "latest":lat,
+              "slug":slug
 
               
               }

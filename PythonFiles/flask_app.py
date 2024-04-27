@@ -9,9 +9,9 @@ app = Flask(__name__)
 def watch():
     return render_template('home.html')
 
-@app.route('/search/<searchTerm>' ,methods =('GET','POST'))
-def hello_world(searchTerm):
-    
+@app.route('/search' ,methods =('GET','POST'))
+def hello_world():
+    searchTerm = request.args.get('q')
     src = search(searchTerm)
     
   
@@ -35,4 +35,4 @@ def get_chap(li,cha):
 
 
 if __name__ == '__main__':
-  app.run(host="192.168.42.251", port=5000, debug=True)
+  app.run( port=5000, debug=True)

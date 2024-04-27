@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Episode List</title>
+    <style>
+      .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-family: Monospace;
+        text-align: center;
+        color: white;
+        background-color: purple;
+        display: block; /* Ensures each button appears on its own line */
+        margin-bottom: 10px; /* Adds spacing between buttons */
+      }
+    </style>
+  </head>
+  <body style="background-color: black">
     {% for data in epi %}
-    <form action="{{data.rsplit('https://www.mangaread.org')[1]}}" method="get">
-     <button  type="submit">{{data.rsplit('/')[5]}}</button>
- </form>
- 
-    {% endfor%}
-</body>
+    <a class="btn" href="{{ data.split('https://www.mangaread.org')[1] }}"
+      >{{data.rsplit('/')[5]}}</a
+    >
+    {% endfor %}
+  </body>
 </html>

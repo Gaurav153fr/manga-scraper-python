@@ -1,25 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   
-    <form  action="Search()" method="post" name="form">
-        <input type="text" id="input" name="jrr">
-    </form>
-        <button type="submit" onclick="Search()">Search..</button>
-    <script>
-        function Search(){
-input  = document.getElementById('input')
-document.form.action = "/search/"+input.value
-document.form.submit()
-console.log("submited")
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: rgb(35, 34, 34);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+      }
+      .input-field {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      .btn-search {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      .btn-search:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form method="post" name="form" onsubmit="Search(); return false;">
+        <input
+          type="text"
+          id="input"
+          class="input-field"
+          name="jrr"
+          placeholder="Enter your search term"
+        />
+        <button type="submit" class="btn-search">Search</button>
+      </form>
+    </div>
 
+    <script>
+      function Search() {
+        var input = document.getElementById("input").value;
+        window.location.href = "/search?q=" + input;
+      }
     </script>
-</body>
+  </body>
 </html>
