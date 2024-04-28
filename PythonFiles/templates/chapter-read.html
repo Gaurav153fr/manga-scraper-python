@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block seriesList %}
+
+
+
+<div class="img-container">
+  {% for data in src %}
+  <img class="image" src="{{data}}" alt="{{data}}" />
+  {% endfor%}
+</div>
+<span class="fixed">
+  <button onclick="toggleImageSize()">Toggle Image Size</button>
+  <br />
+  <button onclick="window.scrollTo(0, 0);">Top</button>
+</span>
+{% endblock %} {% block links %}
+<a href="javascript:history.back()">Go Back</a>
+
+{% endblock %}
+{% block title %}Reading chapter{% endblock %}

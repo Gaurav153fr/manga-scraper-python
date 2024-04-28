@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block seriesList %}
+<ul class="chapter-container" id="list">
+  {% for data in epi %}
+  <a
+    class="chapter-link"
+    href="{{ data.split('https://www.mangaread.org')[1] }}"
+    >{{data.rsplit('/')[5]}}</a
+  >
+  {% endfor %}
+</ul>
+{% endblock %} {% block links %}
+<a href="javascript:history.back()">Go Back</a>
+
+{% endblock %} {% block title %}Episode List{% endblock %}

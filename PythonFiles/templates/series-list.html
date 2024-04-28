@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block seriesList %} {% for data in src %}
+<div class="card">
+  <div class="cont" onclick="submit()">
+    <div class="imgcont">
+      <img class="img" src="{{data.img}}" />
+    </div>
+    <div class="detacont">
+      <a href="/manga/{{data.slug}}">
+        <h4 class="clamp">{{data.alt}}</h4>
+      </a>
+      <h5 class="clamp">{{data.title}}</h5>
+      <table style="width: 100%">
+        <tr>
+          <th>Score</th>
+          <th>Latest</th>
+        </tr>
+        <tr>
+          <td>{{data.score}}</td>
+          <td>{{data.latest}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endfor%} {% endblock %}

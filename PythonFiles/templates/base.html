@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
+    <title>{% block title %} {% endblock %} - Flask manga</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      nav a {
+        color: #d64161;
+
+        margin-left: 50px;
+        text-decoration: none;
+      }
+      .flex {
+        display: flex;
+        justify-content: space-between;
+      }
+      .wrap {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        padding: auto;
+      }
+      .card {
+        width: 200px;
+        margin: 5px;
+        border: black 1px solid;
+        padding: 5px;
+      }
+      .clamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+      }
+      .img {
+        width: 100%;
+      }
+      .chapter-link {
+        display: inline;
+        margin: 5px;
+        border: black 1px solid;
+        padding: 4px;
+        width: 10rem;
+      }
+      .chapter-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .img-container {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .image {
+        max-width: 100%; /* Ensure images don't exceed container width */
+        /* Add some spacing between images */
+      }
+      .fixed {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="flex">
+      <span>
+        <a href="/">Home</a>
+        <a href="https://github.com/Gaurav153fr/Manga" target="_blank">About</a>
+        {% block links %} {% endblock %}
+      </span>
+      <div class="container">
+        <form method="post" name="form" onsubmit="Search(); return false;">
+          <input
+            type="text"
+            id="input"
+            class="input-field"
+            placeholder="Search for Manga/Manhwa"
+          />
+          <button type="submit" class="btn-search">Search</button>
+        </form>
+      </div>
+
+      <script>
+        function Search() {
+          var input = document.getElementById("input").value;
+          window.location.href = "/search?q=" + input;
+        }
+        var imageSizeToggle = false;
+
+        function toggleImageSize() {
+          var container = document.querySelector(".img-container");
+          if (imageSizeToggle) {
+            container.style.width = "100vw";
+          } else {
+            container.style.width = "40vw";
+          }
+          imageSizeToggle = !imageSizeToggle;
+        }
+      </script>
+    </nav>
+    <hr />
+    <div class="content">{% block content %} {% endblock %}</div>
+    <div class="wrap">{% block seriesList %} {% endblock %}</div>
+  </body>
+</html>
