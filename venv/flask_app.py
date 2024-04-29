@@ -31,7 +31,7 @@ def get_chap(li,cha):
     URL = 'https://www.mangaread.org/manga/'+li +"/" +cha
     
     src = scrapeImg(URL)
-    print(URL)
+    
     return render_template('chapter-read.html',src=src,chapter = cha)
     
  

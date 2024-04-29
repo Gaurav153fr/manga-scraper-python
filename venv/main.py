@@ -2,23 +2,30 @@ import re
 import requests as rq
 from bs4 import BeautifulSoup as bs
 
+
 def scrapeImg(URL):
+    data = rq.get(URL).text
 
-    
-    data =rq.get(URL).text
-
-    soup =bs(data,'html.parser')
+    soup = bs(data, 'html.parser')
     filteredData = soup.find_all("div", class_="page-break no-gaps")
     
-    images= []
+    images = []
+    try:
+        next_url = soup.find("div", class_='nav-next').find('a')['href']
+        match = re.search(r'\.org(.*)', next_url)
+        if match:
+            print("hello", next_url, match.group(1))
+    except:
+        next_url = ""
     
     for data in filteredData:
         mainImg = data.find('img')
-        v= mainImg['src']
-        images.append(v)
-        
-
-    return images
+        if mainImg:
+            v = mainImg['src']
+            images.append(v)
+    
+    data = {"images": images, "next": match.group(1)}
+    return data
 
 
 def getepi(epi):
@@ -31,7 +38,7 @@ def getepi(epi):
      desc = soup.find("div",class_="summary__content show-more").find_all("p")
     except:
         desc= soup.find("div",class_="summary__content show-more")
-    print(desc)
+    
     filteredData = soup.find_all("li", class_="wp-manga-chapter")
     epi =[]
     for data in filteredData:
@@ -56,7 +63,8 @@ def search(searchTerm):
         lat = data.find("span",class_="font-meta chapter").text
         url=v.find('a')['href']
         slug=re.search(r'/manga/([^/]+)/?$', url).group(1)
-        print(slug)
+       
+
 
         if v != None:
          da ={"title" : v.text,
