@@ -93,7 +93,7 @@
       <script>
         function Search() {
           var input = document.getElementById("input").value;
-          window.location.href = "/search?q=" + input;
+          window.location.href = "/search?q=" + input + "&p=0";
         }
         var imageSizeToggle = false;
 
@@ -111,5 +111,6 @@
     <hr />
     <div class="content">{% block content %} {% endblock %}</div>
     <div class="wrap">{% block seriesList %} {% endblock %}</div>
+    <div>{% block loadMore %} {% endblock %}</div>
   </body>
 </html>

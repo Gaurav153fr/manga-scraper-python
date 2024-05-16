@@ -8,14 +8,14 @@ app = Flask(__name__)
 @app.route('/')
 def watch():
     searchTerm=''
-    src = search(searchTerm)
+    src = search(searchTerm,0)
     return render_template('series-list.html',src=src,searchTerm=searchTerm)
 
 @app.route('/search' ,methods =('GET','POST'))
 def hello_world():
     searchTerm = request.args.get('q')
-    
-    src = search(searchTerm)
+    pageNumber=request.args.get('p')
+    src = search(searchTerm,pageNumber)
     
   
     return render_template('series-list.html',src=src,searchTerm=searchTerm)

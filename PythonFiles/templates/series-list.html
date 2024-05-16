@@ -22,4 +22,34 @@
     </div>
   </div>
 </div>
-{% endfor%} {% endblock %}
+{% endfor %} {% endblock %} {% block loadMore %}
+<button id="prevPageBtn">Previous Page</button>
+<button id="nextPageBtn">Next Page</button>
+
+<script>
+  var prevPageBtn = document.getElementById("prevPageBtn");
+  var nextPageBtn = document.getElementById("nextPageBtn");
+
+  prevPageBtn.addEventListener("click", function () {
+    // Navigate to previous page by decrementing page number
+    var currentPage = getPageParameter("p");
+    var searchTerm = "{{ searchTerm }}";
+    var prevPage = currentPage - 1;
+    window.location.href = "/search?q=" + searchTerm + "&p=" + prevPage;
+  });
+
+  nextPageBtn.addEventListener("click", function () {
+    // Navigate to next page by incrementing page number
+    var currentPage = getPageParameter("p");
+    var searchTerm = "{{ searchTerm }}";
+    var nextPage = currentPage + 1;
+    window.location.href = "/search?q=" + searchTerm + "&p=" + nextPage;
+  });
+  function getPageParameter(parameterName) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return parseInt(urlParams.get(parameterName))
+      ? parseInt(urlParams.get(parameterName))
+      : 0;
+  }
+</script>
+{% endblock %}
